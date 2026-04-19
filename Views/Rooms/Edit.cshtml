@@ -1,0 +1,102 @@
+@model HotelUyutClean.Models.Room
+@{
+    ViewData["Title"] = "Редактировать номер";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-warning text-white">
+                    <h3>Редактировать номер</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="ImageUrl" />
+                        
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label"></label>
+                            <input asp-for="Title" class="form-control" required />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label"></label>
+                            <textarea asp-for="Description" class="form-control" rows="3" required></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Price" class="form-label"></label>
+                                <input asp-for="Price" type="number" step="0.01" class="form-control" required />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Area" class="form-label"></label>
+                                <input asp-for="Area" type="number" class="form-control" required />
+                                <span asp-validation-for="Area" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="MaxGuests" class="form-label"></label>
+                                <input asp-for="MaxGuests" type="number" class="form-control" required />
+                                <span asp-validation-for="MaxGuests" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Beds" class="form-label"></label>
+                                <input asp-for="Beds" type="number" class="form-control" required />
+                                <span asp-validation-for="Beds" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Category" class="form-label"></label>
+                                <select asp-for="Category" class="form-control">
+                                    <option value="Стандарт">Стандарт</option>
+                                    <option value="Стандарт+">Стандарт+</option>
+                                    <option value="Бизнес">Бизнес</option>
+                                    <option value="Семейный">Семейный</option>
+                                    <option value="Люкс">Люкс</option>
+                                    <option value="Президентский">Президентский</option>
+                                    <option value="Эконом">Эконом</option>
+                                </select>
+                                <span asp-validation-for="Category" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Текущее фото</label>
+                                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                                {
+                                    <img src="@Model.ImageUrl" style="width: 100px; height: 100px; object-fit: cover; display: block; margin-bottom: 10px;" />
+                                }
+                                <label asp-for="ImageFile" class="form-label">Заменить фото</label>
+                                <input asp-for="ImageFile" type="file" class="form-control" accept="image/*" />
+                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Amenities" class="form-label"></label>
+                            <input asp-for="Amenities" class="form-control" placeholder="Wi-Fi, TV, Кондиционер" />
+                            <span asp-validation-for="Amenities" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3 form-check">
+                            <input asp-for="IsAvailable" class="form-check-input" />
+                            <label asp-for="IsAvailable" class="form-check-label"></label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                        <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

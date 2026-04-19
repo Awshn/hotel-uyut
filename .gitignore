@@ -1,0 +1,23 @@
+# Build output
+bin/
+obj/
+publish/
+
+# Visual Studio
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Logs
+logs/
+*.log
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# OS files
+.DS_Store
+Thumbs.db

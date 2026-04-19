@@ -1,0 +1,107 @@
+@model HotelUyutClean.Models.Room
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+<div class="container my-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Главная</a></li>
+            <li class="breadcrumb-item"><a href="/Home/Rooms">Номера</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.Title</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <!-- Галерея фото -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <img src="@Model.ImageUrl" class="card-img-top" alt="@Model.Title" 
+                     style="height: 400px; object-fit: cover;" 
+                     onerror="this.src='https://via.placeholder.com/600x400?text=Фото'">
+            </div>
+        </div>
+
+        <!-- Информация о номере -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h1 class="card-title">@Model.Title</h1>
+                    <div class="mb-3">
+                        <span class="badge bg-primary">@Model.Category</span>
+                        @if (Model.IsAvailable)
+                        {
+                            <span class="badge bg-success">Доступен</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Недоступен</span>
+                        }
+                    </div>
+                    
+                    <p class="card-text lead">@Model.Description</p>
+                    
+                    <hr>
+                    
+                    <h4>Характеристики:</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">📏 <strong>Площадь:</strong> @Model.Area м²</li>
+                        <li class="mb-2">👥 <strong>Максимум гостей:</strong> @Model.MaxGuests человек</li>
+                        <li class="mb-2">🛏️ <strong>Количество кроватей:</strong> @Model.Beds</li>
+                        <li class="mb-2">💰 <strong>Цена за ночь:</strong> <span class="fs-3 text-primary fw-bold">@Model.Price ₽</span></li>
+                    </ul>
+                    
+                    <hr>
+                    
+                    <h4>Удобства:</h4>
+                    <div class="mb-3">
+                        @if (!string.IsNullOrEmpty(Model.Amenities))
+                        {
+                            var amenities = Model.Amenities.Split(',');
+                            foreach (var amenity in amenities)
+                            {
+                                <span class="badge bg-secondary me-1 mb-1">✓ @amenity.Trim()</span>
+                            }
+                        }
+                    </div>
+                    
+                    <hr>
+                    
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="/Bookings/Create/@Model.Id" class="btn btn-primary btn-lg w-100">
+                            🏨 Забронировать сейчас
+                        </a>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            <a href="/Account/Login">Войдите</a> или <a href="/Account/Register">зарегистрируйтесь</a>, чтобы забронировать номер.
+                        </div>
+                    }
+                    
+                    <a href="/Home/Rooms" class="btn btn-outline-secondary w-100 mt-2">
+                        ← Вернуться к списку номеров
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Дополнительная информация -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4>Правила проживания:</h4>
+                    <ul>
+                        <li>Заезд после 14:00, выезд до 12:00</li>
+                        <li>Бесплатная отмена бронирования за 2 дня до заезда</li>
+                        <li>Возможно размещение с домашними животными (доп. плата 500 ₽/сутки)</li>
+                        <li>Для заселения необходим паспорт</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

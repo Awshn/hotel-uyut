@@ -1,0 +1,66 @@
+@using HotelUyutClean.Models
+@model List<Room>
+@{
+    ViewData["Title"] = "Наши номера";
+}
+
+<div class="container my-5">
+    <div class="position-relative mb-4">
+        <h1 class="text-center">🏨 Наши номера</h1>
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="position-absolute top-0 end-0">
+                <a asp-controller="Rooms" asp-action="Create" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Добавить номер
+                </a>
+            </div>
+        }
+    </div>
+    <p class="text-center mb-5">Выберите идеальный номер для вашего отдыха</p>
+    
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var roomItem in Model)
+            {
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="@(roomItem.ImageUrl ?? "/images/no-image.jpg")" class="card-img-top" alt="@roomItem.Title" 
+                             style="height: 200px; object-fit: cover;" 
+                             onerror="this.src='https://via.placeholder.com/300x200?text=Фото'">
+                        <div class="card-body">
+                            <h5 class="card-title">@roomItem.Title</h5>
+                            <p class="card-text small">@roomItem.Description</p>
+                            <ul class="list-unstyled small">
+                                <li>📏 @roomItem.Area м²</li>
+                                <li>👥 до @roomItem.MaxGuests гостей</li>
+                                <li>🛏️ @roomItem.Beds кроватей</li>
+                            </ul>
+                            <p class="price text-primary fw-bold fs-4">@roomItem.Price ₽<span class="fs-6">/ночь</span></p>
+                        </div>
+                        <div class="card-footer bg-white border-0 pb-3">
+                            <a href="/Rooms/Details/@roomItem.Id" class="btn btn-outline-info w-100 mb-2">Подробнее</a>
+                            
+                            @if (User.Identity != null && User.Identity.IsAuthenticated)
+                            {
+                                <a href="/Bookings/Create/@roomItem.Id" class="btn btn-primary w-100">Забронировать</a>
+                            }
+                            else
+                            {
+                                <a href="/Account/Login" class="btn btn-outline-primary w-100">Войдите для бронирования</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    Номера временно недоступны. Пожалуйста, зайдите позже.
+                </div>
+            </div>
+        }
+    </div>
+</div>

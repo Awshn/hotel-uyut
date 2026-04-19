@@ -1,0 +1,77 @@
+@model HotelUyutClean.Models.Booking
+@{
+    ViewData["Title"] = "Детали бронирования";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h3>📄 Детали бронирования #@Model.Id</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img src="@Model.Room?.ImageUrl" class="img-fluid rounded" style="width: 100%; height: 200px; object-fit: cover;" 
+                                 onerror="this.src='https://via.placeholder.com/300'">
+                        </div>
+                        <div class="col-md-7">
+                            <h4>@Model.Room?.Title</h4>
+                            <p>@Model.Room?.Description</p>
+                            <hr>
+                            <dl class="row">
+                                <dt class="col-sm-4">Клиент:</dt>
+                                <dd class="col-sm-8">@Model.User?.Email</dd>
+
+                                <dt class="col-sm-4">Телефон:</dt>
+                                <dd class="col-sm-8">@Model.ContactPhone</dd>
+
+                                <dt class="col-sm-4">Email для связи:</dt>
+                                <dd class="col-sm-8">@Model.ContactEmail</dd>
+
+                                <dt class="col-sm-4">Дата заезда:</dt>
+                                <dd class="col-sm-8">@Model.CheckInDate.ToString("dd.MM.yyyy")</dd>
+
+                                <dt class="col-sm-4">Дата выезда:</dt>
+                                <dd class="col-sm-8">@Model.CheckOutDate.ToString("dd.MM.yyyy")</dd>
+
+                                <dt class="col-sm-4">Гостей:</dt>
+                                <dd class="col-sm-8">@Model.Guests</dd>
+
+                                <dt class="col-sm-4">Стоимость:</dt>
+                                <dd class="col-sm-8"><strong>@Model.TotalPrice ₽</strong></dd>
+
+                                <dt class="col-sm-4">Статус:</dt>
+                                <dd class="col-sm-8">
+                                    @if (Model.Status == "Confirmed")
+                                    {
+                                        <span class="badge bg-success">Подтверждено</span>
+                                    }
+                                    else if (Model.Status == "Cancelled")
+                                    {
+                                        <span class="badge bg-danger">Отменено</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning">@Model.Status</span>
+                                    }
+                                </dd>
+
+                                @if (!string.IsNullOrEmpty(Model.SpecialRequests))
+                                {
+                                    <dt class="col-sm-4">Пожелания:</dt>
+                                    <dd class="col-sm-8">@Model.SpecialRequests</dd>
+                                }
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a asp-action="Index" class="btn btn-secondary">Назад к списку</a>
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Редактировать</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

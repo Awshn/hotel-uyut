@@ -1,0 +1,78 @@
+@model HotelUyutClean.Models.Booking
+@{
+    ViewData["Title"] = "Бронирование номера";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3>📝 Бронирование номера: @Model.Room?.Title</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-5">
+                            <img src="@Model.Room?.ImageUrl" class="img-fluid rounded" alt="@Model.Room?.Title" 
+                                 style="width: 100%; height: 200px; object-fit: cover;"
+                                 onerror="this.src='https://via.placeholder.com/400x300?text=Фото'">
+                        </div>
+                        <div class="col-md-7">
+                            <h4>@Model.Room?.Title</h4>
+                            <p>@Model.Room?.Description</p>
+                            <p><strong>Цена:</strong> @Model.Room?.Price ₽/ночь</p>
+                            <p><strong>Максимум гостей:</strong> @Model.Room?.MaxGuests</p>
+                            <p><strong>Удобства:</strong> @Model.Room?.Amenities</p>
+                        </div>
+                    </div>
+
+                    <form asp-action="Create" method="post">
+                        <input type="hidden" asp-for="RoomId" />
+                        
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="CheckInDate" class="form-label">Дата заезда</label>
+                                <input asp-for="CheckInDate" type="date" class="form-control" />
+                                <span asp-validation-for="CheckInDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="CheckOutDate" class="form-label">Дата выезда</label>
+                                <input asp-for="CheckOutDate" type="date" class="form-control" />
+                                <span asp-validation-for="CheckOutDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Guests" class="form-label">Количество гостей</label>
+                            <input asp-for="Guests" type="number" class="form-control" min="1" max="@Model.Room?.MaxGuests" />
+                            <span asp-validation-for="Guests" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="ContactPhone" class="form-label">Телефон для связи</label>
+                            <input asp-for="ContactPhone" class="form-control" placeholder="+7 (999) 123-45-67" />
+                            <span asp-validation-for="ContactPhone" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="ContactEmail" class="form-label">Email для связи</label>
+                            <input asp-for="ContactEmail" class="form-control" />
+                            <span asp-validation-for="ContactEmail" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="SpecialRequests" class="form-label">Особые пожелания</label>
+                            <textarea asp-for="SpecialRequests" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="SpecialRequests" class="text-danger"></span>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100">Подтвердить бронирование</button>
+                        <a href="/Home/Rooms" class="btn btn-secondary w-100 mt-2">Вернуться к номерам</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

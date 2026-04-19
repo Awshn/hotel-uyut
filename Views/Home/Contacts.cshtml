@@ -1,0 +1,237 @@
+﻿@using HotelUyutClean.Models
+@model HotelViewModel
+
+@{
+    ViewData["Title"] = "Контакты - Гостиница Уют";
+}
+
+<div class="container my-5">
+    <h1 class="text-center mb-4">Контакты и бронирование</h1>
+    
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    
+    <div class="row">
+        <!-- Форма бронирования -->
+        <div class="col-md-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">📅 Форма бронирования</h3>
+                    <form asp-action="Contacts" asp-controller="Home" method="post">
+                        <div class="mb-3">
+                            <label asp-for="ContactForm.Name" class="form-label">Ваше имя *</label>
+                            <input asp-for="ContactForm.Name" class="form-control" placeholder="Иван Иванов" required>
+                            <span asp-validation-for="ContactForm.Name" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="ContactForm.Email" class="form-label">Email *</label>
+                            <input asp-for="ContactForm.Email" type="email" class="form-control" placeholder="ivan@example.com" required>
+                            <span asp-validation-for="ContactForm.Email" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="ContactForm.Phone" class="form-label">Телефон *</label>
+                            <input asp-for="ContactForm.Phone" class="form-control" placeholder="+7 (999) 123-45-67" required>
+                            <span asp-validation-for="ContactForm.Phone" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ContactForm.CheckInDate" class="form-label">Дата заезда</label>
+                                <input asp-for="ContactForm.CheckInDate" type="date" class="form-control" min="@DateTime.Now.ToString("yyyy-MM-dd")">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ContactForm.CheckOutDate" class="form-label">Дата выезда</label>
+                                <input asp-for="ContactForm.CheckOutDate" type="date" class="form-control" min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ContactForm.Guests" class="form-label">Количество гостей</label>
+                                <input asp-for="ContactForm.Guests" type="number" class="form-control" min="1" max="10" value="1">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ContactForm.RoomType" class="form-label">Тип номера</label>
+                                <select asp-for="ContactForm.RoomType" class="form-control">
+                                    <option value="">Выберите тип номера</option>
+                                    <option value="Стандарт">Стандарт (от 3500 ₽)</option>
+                                    <option value="Люкс">Люкс (от 6500 ₽)</option>
+                                    <option value="Семейный">Семейный (от 5000 ₽)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="ContactForm.Message" class="form-label">Дополнительные пожелания</label>
+                            <textarea asp-for="ContactForm.Message" class="form-control" rows="3" placeholder="Особые пожелания, требования к номеру и т.д."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100">Отправить заявку</button>
+                        <p class="text-muted small mt-3 text-center">Наш менеджер свяжется с вами в течение 15 минут</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Контактная информация -->
+        <div class="col-md-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">📞 Контактная информация</h3>
+                    
+                    <div class="mb-4">
+                        <h5><i class="fas fa-map-marker-alt" style="color: #8B6914;"></i> Адрес</h5>
+                        <p>г. Москва, ул. Гостиничная, д. 15<br>
+                        (метро "Центральная", выход к ТЦ "Московский")</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5><i class="fas fa-phone" style="color: #8B6914;"></i> Телефоны</h5>
+                        <p>📞 +7 (495) 123-45-67 (Администратор)<br>
+                        📱 +7 (999) 123-45-67 (WhatsApp, Telegram)<br>
+                        📠 +7 (495) 123-45-68 (Факс)</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5><i class="fas fa-envelope" style="color: #8B6914;"></i> Email</h5>
+                        <p>📧 info@hotel-uyut.ru (Общие вопросы)<br>
+                        📧 booking@hotel-uyut.ru (Бронирование)<br>
+                        📧 sales@hotel-uyut.ru (Корпоративным клиентам)</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5><i class="fas fa-clock" style="color: #8B6914;"></i> Режим работы</h5>
+                        <p>🕐 Стойка регистрации: Круглосуточно<br>
+                        🍽️ Ресторан: 07:00 - 23:00<br>
+                        🏋️ Фитнес-центр: 08:00 - 22:00<br>
+                        🧖 Спа-центр: 10:00 - 21:00</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5><i class="fas fa-share-alt" style="color: #8B6914;"></i> Мы в соцсетях</h5>
+                        <div class="btn-group" role="group">
+                            <a href="#" class="btn btn-outline-primary">Telegram</a>
+                            <a href="#" class="btn btn-outline-primary">VK</a>
+                            <a href="#" class="btn btn-outline-primary">Instagram</a>
+                            <a href="#" class="btn btn-outline-primary">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Как добраться -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h3 class="card-title mb-4">🚗 Как добраться</h3>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <h5>✈️ Из аэропорта</h5>
+                    <p>Мы предлагаем трансфер от/до аэропорта. Стоимость - 1500 ₽ (легковой автомобиль), 2500 ₽ (минивэн). Заказ трансфера за 24 часа.</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <h5>🚉 С вокзала</h5>
+                    <p>От ж/д вокзала можно доехать на метро до станции "Центральная" (10 минут), затем 5 минут пешком. Также такси - около 300 ₽.</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <h5>🚌 На автомобиле</h5>
+                    <p>GPS координаты: 55.751244, 37.618423. Бесплатная охраняемая парковка для гостей отеля.</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <h5>🚇 На метро</h5>
+                    <p>Станция метро "Центральная" (выход №3), далее прямо 300 метров до гостиницы.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Карта -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h3 class="card-title mb-4">🗺️ Мы на карте</h3>
+            <div class="bg-light text-center p-5 rounded">
+                <p class="text-muted">[Здесь будет карта Google Maps или Яндекс.Карты]</p>
+                <p>ул. Гостиничная, д. 15, Москва, Россия</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Часто задаваемые вопросы -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title mb-4">❓ Часто задаваемые вопросы</h3>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Во сколько заезд и выезд?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Заезд с 14:00, выезд до 12:00. Возможно раннее заселение и поздний выезд за дополнительную плату.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Можно с животными?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Да, мы принимаем гостей с домашними животными (кошки, собаки мелких пород). Дополнительная плата - 500 ₽ в сутки.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Есть ли скидки?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Да, мы предоставляем скидки: 10% при бронировании на сайте, 15% для пенсионеров и студентов, 20% при длительном проживании (от 7 ночей).
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            Какие способы оплаты?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Наличные, банковские карты (Visa, Mastercard, МИР), безналичный расчёт для юридических лиц.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Галерея -->
+    <h3 class="text-center mb-4 mt-5">Наша галерея</h3>
+    <div class="row">
+        @if (Model.ContactImages != null)
+        {
+            foreach (var image in Model.ContactImages)
+            {
+                <div class="col-6 col-md-2 mb-3">
+                    <img src="@image.ImagePath" class="img-fluid rounded shadow-sm" alt="@image.Title" style="height: 100px; width: 100%; object-fit: cover;" onerror="this.src='https://via.placeholder.com/150x100?text=Фото'">
+                </div>
+            }
+        }
+    </div>
+</div>

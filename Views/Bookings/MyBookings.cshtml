@@ -1,0 +1,72 @@
+@model List<HotelUyutClean.Models.Booking>
+@{
+    ViewData["Title"] = "Мои бронирования";
+}
+
+<div class="container my-5">
+    <h1 class="text-center mb-4">📋 Мои бронирования</h1>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row">
+            @foreach (var booking in Model)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="@booking.Room?.ImageUrl" class="img-fluid rounded-start" style="height: 100%; object-fit: cover;" 
+                                     onerror="this.src='https://via.placeholder.com/200'">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">@booking.Room?.Title</h5>
+                                    <p class="card-text small">@booking.Room?.Description</p>
+                                    <ul class="list-unstyled small">
+                                        <li>📅 Заезд: @booking.CheckInDate.ToString("dd.MM.yyyy")</li>
+                                        <li>📅 Выезд: @booking.CheckOutDate.ToString("dd.MM.yyyy")</li>
+                                        <li>👥 Гостей: @booking.Guests</li>
+                                        <li>💰 Стоимость: <strong>@booking.TotalPrice ₽</strong></li>
+                                        <li>
+                                            Статус: 
+                                            @if (booking.Status == "Confirmed")
+                                            {
+                                                <span class="badge bg-success">Подтверждено</span>
+                                            }
+                                            else if (booking.Status == "Cancelled")
+                                            {
+                                                <span class="badge bg-danger">Отменено</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-warning">@booking.Status</span>
+                                            }
+                                        </li>
+                                    </ul>
+                                    @if (booking.Status == "Confirmed")
+                                    {
+                                        <a href="/Bookings/Cancel/@booking.Id" class="btn btn-sm btn-danger">Отменить</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center">
+            У вас пока нет бронирований. <a href="/Home/Rooms">Перейти к номерам</a>
+        </div>
+    }
+</div>

@@ -1,0 +1,54 @@
+﻿@using MyMvcApp.Models
+@model HotelViewModel
+
+@{
+    ViewData["Title"] = "О нас - Гостиница Уют";
+}
+
+<div class="container my-5">
+    <h1 class="text-center mb-4">О нашей гостинице</h1>
+    
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <p class="lead">Гостиница "Уют" - это место, где каждый гость чувствует себя как дома.</p>
+            <p>Мы открылись в 2015 году и за это время приняли более 10,000 довольных гостей. Наша цель - создать атмосферу тепла и заботы, чтобы ваш отдых или командировка прошли максимально комфортно.</p>
+            <p>Все номера оснащены современной мебелью, сплит-системами, телевизорами и бесплатным Wi-Fi. Мы предлагаем вкусные завтраки, круглосуточную стойку регистрации и услуги прачечной.</p>
+        </div>
+        <div class="col-md-6">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h5 class="card-title">Наши преимущества:</h5>
+                    <ul>
+                        <li>✅ Бесплатный Wi-Fi во всех номерах</li>
+                        <li>✅ Круглосуточная стойка регистрации</li>
+                        <li>✅ Завтрак "шведский стол"</li>
+                        <li>✅ Трансфер от/до аэропорта</li>
+                        <li>✅ Бесплатная парковка</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h2 class="text-center mb-4">Фотогалерея</h2>
+    <div class="row">
+        @if (Model.AboutImages != null)
+        {
+            foreach (var image in Model.AboutImages)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="@image.ImagePath" class="card-img-top" alt="@image.Title" style="height: 200px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/400x200?text=Фото+не+загружено'">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@image.Title</h5>
+                            @if (!string.IsNullOrEmpty(image.Description))
+                            {
+                                <p class="card-text small">@image.Description</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
