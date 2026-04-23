@@ -13,7 +13,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE TABLE [AspNetRoles] (
@@ -28,7 +28,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE TABLE [AspNetUsers] (
@@ -59,7 +59,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE TABLE [Rooms] (
@@ -82,7 +82,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE TABLE [AspNetRoleClaims] (
@@ -98,7 +98,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE TABLE [AspNetUserClaims] (
@@ -114,7 +114,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE TABLE [AspNetUserLogins] (
@@ -130,7 +130,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE TABLE [AspNetUserRoles] (
@@ -145,7 +145,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE TABLE [AspNetUserTokens] (
@@ -161,7 +161,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE TABLE [Bookings] (
@@ -186,7 +186,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE INDEX [IX_AspNetRoleClaims_RoleId] ON [AspNetRoleClaims] ([RoleId]);
@@ -195,7 +195,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     EXEC(N'CREATE UNIQUE INDEX [RoleNameIndex] ON [AspNetRoles] ([NormalizedName]) WHERE [NormalizedName] IS NOT NULL');
@@ -204,7 +204,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE INDEX [IX_AspNetUserClaims_UserId] ON [AspNetUserClaims] ([UserId]);
@@ -213,7 +213,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE INDEX [IX_AspNetUserLogins_UserId] ON [AspNetUserLogins] ([UserId]);
@@ -222,7 +222,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE INDEX [IX_AspNetUserRoles_RoleId] ON [AspNetUserRoles] ([RoleId]);
@@ -231,7 +231,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE INDEX [EmailIndex] ON [AspNetUsers] ([NormalizedEmail]);
@@ -240,7 +240,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     EXEC(N'CREATE UNIQUE INDEX [UserNameIndex] ON [AspNetUsers] ([NormalizedUserName]) WHERE [NormalizedUserName] IS NOT NULL');
@@ -249,7 +249,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE INDEX [IX_Bookings_RoomId] ON [Bookings] ([RoomId]);
@@ -258,7 +258,7 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     CREATE INDEX [IX_Bookings_UserId] ON [Bookings] ([UserId]);
@@ -267,11 +267,11 @@ GO
 
 IF NOT EXISTS (
     SELECT * FROM [__EFMigrationsHistory]
-    WHERE [MigrationId] = N'20260417122932_InitialCreate'
+    WHERE [MigrationId] = N'20260423024110_InitialCreate'
 )
 BEGIN
     INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-    VALUES (N'20260417122932_InitialCreate', N'8.0.2');
+    VALUES (N'20260423024110_InitialCreate', N'8.0.2');
 END;
 GO
 

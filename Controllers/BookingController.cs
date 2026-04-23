@@ -89,15 +89,27 @@ namespace HotelUyutClean.Controllers
                 }
 
                 var days = (booking.CheckOutDate - booking.CheckInDate).Days;
-                booking.TotalPrice = days * room.Price;
-                booking.UserId = user.Id;
-                booking.BookingDate = DateTime.Now;
-                booking.Status = "Confirmed";
+                
+                // СОЗДАЕМ НОВЫЙ ОБЪЕКТ, НЕ ИСПОЛЬЗУЯ ПОЛУЧЕННЫЙ booking
+                var newBooking = new Booking
+                {
+                    RoomId = booking.RoomId,
+                    CheckInDate = booking.CheckInDate,
+                    CheckOutDate = booking.CheckOutDate,
+                    Guests = booking.Guests,
+                    SpecialRequests = booking.SpecialRequests,
+                    ContactPhone = booking.ContactPhone,
+                    ContactEmail = booking.ContactEmail,
+                    UserId = user.Id,
+                    BookingDate = DateTime.Now,
+                    TotalPrice = days * room.Price,
+                    Status = "Confirmed"
+                };
 
-                _context.Bookings.Add(booking);
+                _context.Bookings.Add(newBooking);
                 await _context.SaveChangesAsync();
 
-                TempData["SuccessMessage"] = $"Номер '{room.Title}' успешно забронирован! Стоимость: {booking.TotalPrice} ₽";
+                TempData["SuccessMessage"] = $"Номер '{room.Title}' успешно забронирован! Стоимость: {newBooking.TotalPrice} ₽";
                 return RedirectToAction("MyBookings");
             }
 

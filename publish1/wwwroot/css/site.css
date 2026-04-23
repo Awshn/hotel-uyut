@@ -1,0 +1,547 @@
+﻿/* wwwroot/css/site.css */
+
+/* Глобальные стили - теплая природная гамма */
+:root {
+    --primary-color: #C4A484; /* Песочный/бежевый */
+    --secondary-color: #F5E6D3; /* Светло-бежевый */
+    --accent-color: #E8B86B; /* Теплый золотистый */
+    --dark-color: #5C4033; /* Темно-коричневый */
+    --light-color: #FFF9F0; /* Кремовый */
+    --success-color: #6B8E23; /* Оливковый */
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-color);
+    color: #4A4A4A;
+    line-height: 1.6;
+}
+
+/* Навигация */
+.navbar {
+    background: linear-gradient(135deg, var(--dark-color) 0%, #8B6914 100%) !important;
+    box-shadow: var(--shadow);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--secondary-color) !important;
+    transition: var(--transition);
+}
+
+    .navbar-brand:hover {
+        transform: scale(1.05);
+        color: white !important;
+    }
+
+.nav-link {
+    color: var(--secondary-color) !important;
+    font-weight: 500;
+    margin: 0 0.5rem;
+    transition: var(--transition);
+    position: relative;
+}
+
+    .nav-link:hover {
+        color: white !important;
+        transform: translateY(-2px);
+    }
+
+    .nav-link.active {
+        color: white !important;
+    }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+/* Замените hero-section в site.css на это: */
+
+/* Hero секция - убираем фиолетовый */
+/* Hero секция - теплый градиент без фиолетового */
+/* wwwroot/css/site.css */
+.hero-section {
+    background: linear-gradient(135deg, #D4A373 0%, #8B6914 50%, #5C4033 100%) !important;
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+        background-size: cover;
+        opacity: 0.3;
+    }
+
+    .hero-section .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        animation: fadeInUp 1s ease;
+        color: #FFF8F0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-section .lead {
+        font-size: 1.3rem;
+        animation: fadeInUp 1s ease 0.3s both;
+        color: #FFF8F0;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+/* Карточки */
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: var(--transition);
+    background: white;
+    box-shadow: var(--shadow);
+}
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+.card-img-top {
+    transition: var(--transition);
+    height: 250px;
+    object-fit: cover;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.card-title {
+    color: var(--dark-color);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.card-text {
+    color: #666;
+}
+
+/* Кнопки */
+.btn {
+    border-radius: 25px;
+    padding: 10px 25px;
+    font-weight: 500;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--dark-color) 0%, #8B6914 100%);
+    border: none;
+    color: white;
+}
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(92, 64, 51, 0.4);
+        background: linear-gradient(135deg, #8B6914 0%, var(--dark-color) 100%);
+    }
+
+/* Форма */
+.form-control {
+    border-radius: 10px;
+    border: 2px solid #E8DCC8;
+    transition: var(--transition);
+    padding: 12px;
+}
+
+    .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(196, 164, 132, 0.25);
+    }
+
+.form-label {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Карточки на главной */
+.price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #8B6914;
+}
+
+.room-features {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+    .room-features li {
+        display: inline-block;
+        margin-right: 1rem;
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+        .room-features li i {
+            color: var(--dark-color);
+            margin-right: 0.3rem;
+        }
+
+/* Страница "О нас" */
+.stats {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+    color: white;
+    padding: 3rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.advantage-list {
+    list-style: none;
+    padding: 0;
+}
+
+    .advantage-list li {
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #E8DCC8;
+        font-size: 1.1rem;
+    }
+
+        .advantage-list li:before {
+            content: "✓";
+            color: var(--success-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+/* Галерея на странице контактов */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+    .gallery-item img {
+        transition: var(--transition);
+    }
+
+    .gallery-item:hover img {
+        transform: scale(1.1);
+    }
+
+    .gallery-item::after {
+        content: '🔍';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 10px 15px;
+        border-radius: 50%;
+        transition: var(--transition);
+        pointer-events: none;
+    }
+
+    .gallery-item:hover::after {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+/* Контактная информация */
+.contact-info {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+    .contact-info p {
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .contact-info strong {
+        color: var(--dark-color);
+        min-width: 100px;
+        display: inline-block;
+    }
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .hero-section .lead {
+        font-size: 1rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+
+    .card-img-top {
+        height: 200px;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    .contact-info p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Стили для уведомлений */
+.alert {
+    border-radius: 10px;
+    border: none;
+    box-shadow: var(--shadow);
+    animation: fadeIn 0.5s ease;
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+    color: #2E7D32;
+}
+
+/* Стили для футера */
+footer {
+    background: linear-gradient(135deg, var(--dark-color) 0%, #8B6914 100%);
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: auto;
+}
+
+    footer p {
+        margin: 0;
+    }
+
+/* Стили для иконок */
+.social-icons {
+    margin-top: 1rem;
+}
+
+    .social-icons a {
+        color: var(--secondary-color);
+        margin: 0 10px;
+        font-size: 1.5rem;
+        transition: var(--transition);
+        display: inline-block;
+    }
+
+        .social-icons a:hover {
+            transform: translateY(-3px);
+            color: white;
+        }
+
+/* Анимация загрузки карточек */
+.card {
+    animation: fadeInUp 0.6s ease;
+}
+
+    .card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .card:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+
+    .card:nth-child(5) {
+        animation-delay: 0.5s;
+    }
+
+    .card:nth-child(6) {
+        animation-delay: 0.6s;
+    }
+
+/* Кастомный скроллбар */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--secondary-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--dark-color);
+    }
+
+/* Бейджи и метки */
+.badge {
+    background: var(--accent-color);
+    color: var(--dark-color);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+/* Разделители */
+.divider {
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color);
+    margin: 20px auto;
+    border-radius: 3px;
+}
+
+/* Стили для заголовков */
+h1, h2, h3 {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+h2 {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+/* Стили для списка преимуществ */
+.feature-box {
+    text-align: center;
+    padding: 1.5rem;
+    transition: var(--transition);
+}
+
+    .feature-box:hover {
+        transform: translateY(-5px);
+    }
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+/* Дополнительные стили для навигации и футера */
+
+.navbar-nav .nav-link {
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    margin: 0 2px;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.navbar-nav .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+.dropdown-menu {
+    background-color: #5C4033;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.dropdown-menu .dropdown-item {
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #8B6914;
+    color: white;
+}
+
+.dropdown-divider {
+    border-color: rgba(255,255,255,0.2);
+}
+
+footer a {
+    transition: all 0.3s ease;
+}
+
+footer a:hover {
+    color: #E8B86B !important;
+    transform: translateY(-2px);
+    display: inline-block;
+}
+
+.footer {
+    margin-top: 50px;
+}

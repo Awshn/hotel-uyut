@@ -1,0 +1,27 @@
+open asp-hotel.somee.com
+Awshn
+TYfghxcvbn76@.
+cd /www.asp-hotel.somee.com
+mkdir wwwroot
+cd wwwroot
+mkdir css
+mkdir images
+mkdir js
+mkdir lib
+cd lib
+mkdir bootstrap
+mkdir jquery
+mkdir jquery-validation
+mkdir jquery-validation-unobtrusive
+cd bootstrap
+mkdir dist
+cd dist
+mkdir css
+mkdir js
+cd /www.asp-hotel.somee.com/wwwroot/lib/jquery
+mkdir dist
+cd /www.asp-hotel.somee.com/wwwroot/lib/jquery-validation
+mkdir dist
+cd /www.asp-hotel.somee.com/wwwroot/lib/jquery-validation-unobtrusive
+mkdir dist
+quit

@@ -1,0 +1,24 @@
+open asp-hotel.somee.com
+Awshn
+TYfghxcvbn76@.
+cd /www.asp-hotel.somee.com/wwwroot/css
+lcd C:\Users\daniel\Desktop\rab\projects\c#\HotelUyutClean\wwwroot\css
+binary
+prompt
+mput *.css
+cd /www.asp-hotel.somee.com/wwwroot/lib/bootstrap/dist/css
+lcd C:\Users\daniel\Desktop\rab\projects\c#\HotelUyutClean\wwwroot\lib\bootstrap\dist\css
+mput *.css
+cd /www.asp-hotel.somee.com/wwwroot/lib/bootstrap/dist/js
+lcd C:\Users\daniel\Desktop\rab\projects\c#\HotelUyutClean\wwwroot\lib\bootstrap\dist\js
+mput *.js
+cd /www.asp-hotel.somee.com/wwwroot/lib/jquery/dist
+lcd C:\Users\daniel\Desktop\rab\projects\c#\HotelUyutClean\wwwroot\lib\jquery\dist
+mput *.js
+cd /www.asp-hotel.somee.com/wwwroot/lib/jquery-validation/dist
+lcd C:\Users\daniel\Desktop\rab\projects\c#\HotelUyutClean\wwwroot\lib\jquery-validation\dist
+mput *.js
+cd /www.asp-hotel.somee.com/wwwroot/lib/jquery-validation-unobtrusive/dist
+lcd C:\Users\daniel\Desktop\rab\projects\c#\HotelUyutClean\wwwroot\lib\jquery-validation-unobtrusive\dist
+mput *.js
+quit
